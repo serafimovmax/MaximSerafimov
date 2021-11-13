@@ -1,5 +1,6 @@
-package com.epam.tc.hw3.page;
+package com.epam.tc.hw4.page;
 
+import io.qameta.allure.Step;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.openqa.selenium.WebDriver;
@@ -41,60 +42,73 @@ public class MainPage extends AbstractPage {
         return null;
     }
 
+    @Step("Get User Name text")
     public String getUserName() {
         return userName.getText();
     }
 
+    @Step("Get full User Name")
     public WebElement fullUserName() {
         return userName;
     }
 
+    @Step("Get Header Menu Text")
     public List<String> getHeaderMenuText() {
         return headerMenu.stream()
                          .map(WebElement::getText)
             .collect(Collectors.toList());
     }
 
+    @Step("Header menu is displayed")
     public Boolean headerMenuDisplayed() {
         return headerMenu.stream().allMatch(WebElement::isDisplayed);
     }
 
+    @Step("Benefit Icons are displayed")
     public Boolean benefitIconsDisplayed() {
         return benefitIcons.stream()
                            .allMatch(WebElement::isDisplayed);
     }
 
+    @Step("Check Benefit Icons Text")
     public List<String> getBenefitIconsText() {
         return benefitTxt.stream()
                          .map(WebElement::getText)
             .collect(Collectors.toList());
     }
 
+    @Step("Benefit Icons Text is displayed")
     public Boolean benefitIconsTextDisplayed() {
         return benefitTxt.stream().allMatch(WebElement::isDisplayed);
     }
 
+    @Step("Check iFrame")
     public WebElement getIframe() {
         return iframe;
     }
 
+    @Step("Switch to iFrame button")
     public void switchToIframeButton() {
         webDriver.switchTo().frame(iframe);
     }
 
+    @Step("iFrame button is displayed")
     public Boolean iframeButtonDisplayed() {
         return frameButton.isDisplayed();
     }
 
+    @Step("Switch to parent iFrame")
     public void switchToParentFrame() {
         webDriver.switchTo().parentFrame();
     }
 
+    @Step("Left menu is displayed")
     public Boolean leftMenuDisplayed() {
         return leftMenu.stream()
                        .allMatch(WebElement::isDisplayed);
     }
 
+    @Step("Get left menu text")
     public List<String> getLeftMenuText() {
         return leftMenu.stream().map(WebElement::getText)
                        .collect(Collectors.toList());

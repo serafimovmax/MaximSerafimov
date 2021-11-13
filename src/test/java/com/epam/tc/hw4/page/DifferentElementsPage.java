@@ -1,5 +1,6 @@
-package com.epam.tc.hw3.page;
+package com.epam.tc.hw4.page;
 
+import io.qameta.allure.Step;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.openqa.selenium.WebDriver;
@@ -44,34 +45,42 @@ public class DifferentElementsPage extends AbstractPage {
         return null;
     }
 
+    @Step("Click SERVICE button")
     public void clickServiceButton() {
         service.click();
     }
 
+    @Step("Click Different Elements button")
     public void goToDifferentElementsPage() {
         differentElements.click();
     }
 
+    @Step("Select checkbox {Water}")
     public void selectWaterCheckbox() {
         waterCheckbox.click();
     }
 
+    @Step("Select checkbox {Wind}")
     public void selectWindCheckbox() {
         windCheckbox.click();
     }
 
+    @Step("Select radio {Selen}")
     public void selectSelenRadio() {
         radioSelen.click();
     }
 
+    @Step("Click Dropdown Colors")
     public void clickDropdownColors() {
         dropdownColors.click();
     }
 
+    @Step("Dropdown select color {Yellow}")
     public void selectYellowColor() {
         yellowColor.click();
     }
 
+    @Step("Get logs text")
     public List<String> getLogsComponetText() {
         return logsComponent.stream()
                             .map(logsText -> logsText

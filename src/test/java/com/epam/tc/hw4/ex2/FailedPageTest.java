@@ -4,10 +4,13 @@ import static com.epam.tc.hw4.PageElements.IMG_TEXT;
 import static com.epam.tc.hw4.PageElements.LEFT_BUTTONS_TEXT;
 
 import com.epam.tc.hw4.BaseHomePageTest;
+import com.epam.tc.hw4.util.TestFailedListener;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners({TestFailedListener.class})
 @Feature(value = "Test for Different Elements Page")
 @Story(value = "Open page, select checkboxes, radio, dropdown and get los text")
 public class FailedPageTest extends BaseHomePageTest {

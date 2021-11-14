@@ -23,29 +23,12 @@
   </properties>
 
   <profiles>
-    <profile>
-      <id>hw1-all-calculator-test-suite</id>
-      <properties>
-        <suite.xml.name>${project.basedir}/src/test/resources/suite.epam.tc.hw1/AllCalcTestSuite</suite.xml.name>
-      </properties>
-    </profile>
 
     <profile>
-      <id>hw1-mult-div-calculator-test-suite</id>
-      <properties>
-        <suite.xml.name>${project.basedir}/src/test/resources/suite.epam.tc.hw1/MultDivCalcTestSuite</suite.xml.name>
-      </properties>
-    </profile>
-
-    <profile>
-      <id>hw1-sum-sub-calculator-test-suite</id>
-      <properties>
-        <suite.xml.name>${project.basedir}/src/test/resources/suite.epam.tc.hw1/SumSubCalcTestSuite</suite.xml.name>
-      </properties>
-    </profile>
-
-    <profile>
-      <id>hw4AllTeast</id>
+      <id>hw4AllTest</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <properties>
         <suite.xml.name>${project.basedir}/src/test/resources/hw4/AllTestsSuite</suite.xml.name>
       </properties>

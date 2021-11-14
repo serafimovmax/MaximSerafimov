@@ -27,7 +27,7 @@
     <profile>
       <id>hw4AllTest</id>
       <activation>
-        <activeByDefault>true</activeByDefault>
+        <activeByDefault>false</activeByDefault>
       </activation>
       <properties>
         <suite.xml.name>${project.basedir}/src/test/resources/hw4/AllTestsSuite</suite.xml.name>

@@ -17,7 +17,7 @@ public class FailedPageTest extends BaseHomePageTest {
 
         //5. Assert menu buttons are displayed
         softAssert.assertTrue(mainPage.headerMenuDisplayed());
-        softAssert.assertEquals(mainPage.getHeaderMenuText(), "MENU_BUTTONS_TEXT");
+        softAssert.assertEquals(mainPage.getHeaderMenuText(), LEFT_BUTTONS_TEXT);
 
         //6. Assert that there are 4 images on the Index Page and they are displayed
         softAssert.assertTrue(mainPage.benefitIconsDisplayed());

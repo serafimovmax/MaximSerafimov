@@ -39,7 +39,6 @@ public class BaseHomePageTest {
         //3. Perform login
         mainPage = loginPage.login(someUser);
 
-
         //4. Assert Username is loggined
         softAssert.assertTrue(mainPage.fullUserName().isDisplayed());
         softAssert.assertEquals(mainPage.getUserName(), Constants.USER_FULL_NAME.get());

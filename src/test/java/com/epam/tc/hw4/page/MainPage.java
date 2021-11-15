@@ -31,7 +31,6 @@ public class MainPage extends AbstractPage {
     @FindBy(xpath = "//ul[@class='sidebar-menu left']/li")
     private List<WebElement> leftMenu;
 
-
     protected MainPage(WebDriver webDriver) {
         super(webDriver);
         PageFactory.initElements(this.webDriver, this);

@@ -4,7 +4,6 @@ import java.util.List;
 
 public class PageElements {
 
-
     public static final List<String> MENU_BUTTONS_TEXT = List.of(
         "HOME",
         "CONTACT FORM",

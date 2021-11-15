@@ -17,58 +17,27 @@
     <testng.version>7.4.0</testng.version>
     <assertj.version>3.21.0</assertj.version>
     <selenium-java.version>3.141.59</selenium-java.version>
+
+    <allure-testng.version>2.16.0</allure-testng.version>
+    <aspectj.version>1.9.7</aspectj.version>
   </properties>
 
   <profiles>
-    <profile>
-      <id>hw1-all-calculator-test-suite</id>
-      <properties>
-        <suite.xml.name>${project.basedir}/src/test/resources/suite.epam.tc.hw1/AllCalcTestSuite</suite.xml.name>
-      </properties>
-    </profile>
 
     <profile>
-      <id>hw1-mult-div-calculator-test-suite</id>
-      <properties>
-        <suite.xml.name>${project.basedir}/src/test/resources/suite.epam.tc.hw1/MultDivCalcTestSuite</suite.xml.name>
-      </properties>
-    </profile>
-
-    <profile>
-      <id>hw1-sum-sub-calculator-test-suite</id>
-      <properties>
-        <suite.xml.name>${project.basedir}/src/test/resources/suite.epam.tc.hw1/SumSubCalcTestSuite</suite.xml.name>
-      </properties>
-    </profile>
-
-    <profile>
-      <id>hw2-home-page-one</id>
-      <properties>
-      <suite.xml.name>${project.basedir}/src/test/resources/suite.epam.tc.hw2/HomePageOneTestSuite</suite.xml.name>
-      </properties>
-    </profile>
-
-    <profile>
-      <id>hw2-home-page-two</id>
-      <properties>
-        <suite.xml.name>${project.basedir}/src/test/resources/suite.epam.tc.hw2/HomePageTwoTestSuite</suite.xml.name>
-      </properties>
-    </profile>
-
-    <profile>
-      <id>hw3-home-page-one</id>
-      <properties>
-        <suite.xml.name>${project.basedir}/src/test/resources/hw3/HomePageTestSuite</suite.xml.name>
-      </properties>
-    </profile>
-
-    <profile>
-      <id>hw3-home-page-two</id>
+      <id>hw4AllTest</id>
       <activation>
-        <activeByDefault>true</activeByDefault>
+        <activeByDefault>false</activeByDefault>
       </activation>
       <properties>
-        <suite.xml.name>${project.basedir}/src/test/resources/hw3/HomePageTwoTestSuite</suite.xml.name>
+        <suite.xml.name>${project.basedir}/src/test/resources/hw4/AllTestsSuite</suite.xml.name>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>hw4FailedTest</id>
+      <properties>
+        <suite.xml.name>${project.basedir}/src/test/resources/hw4/FailedTestSuite</suite.xml.name>
       </properties>
     </profile>
 
@@ -110,6 +79,12 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-testng</artifactId>
+      <version>${allure-testng.version}</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -146,15 +121,42 @@
           </execution>
         </executions>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.0.0-M5</version>
         <configuration>
+          <testFailureIgnore>true</testFailureIgnore>
+          <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+          </argLine>
           <suiteXmlFiles>${suite.xml.name}</suiteXmlFiles>
         </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+            <scope>runtime</scope>
+          </dependency>
+        </dependencies>
       </plugin>
     </plugins>
   </build>
+
+  <reporting>
+    <excludeDefaults>true</excludeDefaults>
+    <plugins>
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>2.10.0</version>
+        <configuration>
+          <reportVersion>${allure-testng.version}</reportVersion>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
 
 </project>

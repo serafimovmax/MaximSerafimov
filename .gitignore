@@ -1,7 +1,12 @@
-target
+/target
 *.iml
 .idea
 .DS_Store
 *.DS_Store
 */.DS_Store
 **/.DS_Store
+/.allure
+.allure
+/allure-results
+vcs.xml
+out/

@@ -3,6 +3,7 @@ package com.epam.tc.hw5.cucumber.steps;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.epam.tc.hw5.util.TextsForComparison;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.qameta.allure.Feature;
@@ -28,93 +29,44 @@ public class DifferentElementsSteps extends AbstractBaseStep {
                 .isEqualTo(TextsForComparison.DIFFERENT_ELEMENTS_URL);
     }
 
-    @When("I select {string} in checkbox")
-    public void clickOnCheckboxes(String checkboxType) {
-        switch (checkboxType) {
-            case "Water":
-                differentElementsPage.selectWaterCheckbox();
-                break;
-            case "Wind":
-                differentElementsPage.selectWindCheckbox();
-                break;
-            case "Earth":
-            case "Fire":
-                throw new UnsupportedOperationException();
-            default: throw new RuntimeException("Incorrect value");
-        }
+    @When("I select \"Water\" in checkbox")
+    public void clickOnWaterCheckboxes() {
+        differentElementsPage.selectWaterCheckbox();
     }
 
-    @Then("{string} checkbox is selected")
-    public void checkboxIsChecked(String checkboxType) {
-        switch (checkboxType) {
-            case "Water":
-                differentElementsPage.isWaterCheckboxSelected();
-                break;
-            case "Wind":
-                differentElementsPage.isWindCheckboxSelected();
-                break;
-            case "Earth":
-            case "Fire":
-                throw new UnsupportedOperationException();
-            default: throw new RuntimeException("Incorrect value");
-        }
+    @When("I select \"Wind\" in checkbox")
+    public void clickOnWindCheckboxes() {
+        differentElementsPage.selectWindCheckbox();
     }
 
-    @When("I click on {string} radio")
-    public void clickOnRadio(String ratioType) {
-        switch (ratioType) {
-            case "Selen":
-                differentElementsPage.selectSelenRadio();
-                break;
-            case "Gold":
-            case "Silver":
-            case "Bronze":
-                throw new UnsupportedOperationException();
-            default: throw new RuntimeException("Incorrect value");
-        }
+    @Then("\"Water\" checkbox is selected")
+    public void checkboxWaterIsChecked() {
+        differentElementsPage.isWaterCheckboxSelected();
     }
 
-    @When("{string} radio is checked")
-    public void radioIsChecked(String ratioType) {
-        switch (ratioType) {
-            case "Selen":
-                differentElementsPage.isSelenRadioSelected();
-                break;
-            case "Gold":
-            case "Silver":
-            case "Bronze":
-                throw new UnsupportedOperationException();
-            default: throw new RuntimeException("Incorrect value");
-        }
+    @And("\"Wind\" checkbox is selected")
+    public void checkboxWindIsChecked() {
+        differentElementsPage.isWindCheckboxSelected();
     }
 
-    @When("I select {string} color in dropdown")
-    public void selectColorInDropdown(String color) {
+    @When("I click on \"Selen\" radio")
+    public void clickOnRadio() {
+        differentElementsPage.selectSelenRadio();
+    }
+
+    @When("\"Selen\" radio is checked")
+    public void radioIsChecked() {
+        differentElementsPage.isSelenRadioSelected();
+    }
+
+    @When("I select \"Yellow\" color in dropdown")
+    public void selectColorInDropdown() {
         differentElementsPage.clickDropdownColors();
-        switch (color) {
-            case "Yellow":
-                differentElementsPage.selectYellow();
-                break;
-            case "Red":
-            case "Green":
-            case "Blue":
-                throw new UnsupportedOperationException();
-            default: throw new RuntimeException("Incorrect value");
-        }
     }
 
-    @When("{string} color is selected")
-    public void yellowIsChecked(String color) {
-        switch (color) {
-            case "Yellow":
-                differentElementsPage.isYellowSelected();
-                break;
-            case "Red":
-            case "Green":
-            case "Blue":
-                throw new UnsupportedOperationException();
-            default: throw new RuntimeException("Incorrect value");
-        }
+    @When("\"Yellow\" color is selected")
+    public void yellowIsChecked() {
+        differentElementsPage.isYellowSelected();
     }
 
     @When("Log rows are displayed")

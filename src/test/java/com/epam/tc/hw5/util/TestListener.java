@@ -15,7 +15,6 @@ import org.testng.ITestResult;
 
 public class TestListener implements ITestListener {
 
-
     public void onTestFailure(ITestResult itestresult) {
         WebDriver webDriver = DriverSingleton.getWebDriver();
         saveScreenshot(webDriver);

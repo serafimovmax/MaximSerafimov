@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class DifferentElementsPage extends AbstractPage {
 
@@ -16,6 +17,9 @@ public class DifferentElementsPage extends AbstractPage {
     private WebElement service;
     @FindBy(linkText = "DIFFERENT ELEMENTS")
     private WebElement differentElements;
+
+    @FindBy(xpath = "//input[@type='checkbox']")
+    private List<WebElement> checkboxes;
 
     @FindBy(xpath = "//label[contains(.,'Water')]")
     private WebElement waterCheckbox;
@@ -81,12 +85,8 @@ public class DifferentElementsPage extends AbstractPage {
 
     @Step("Click to Dropdown Colors")
     public void clickDropdownColors() {
-        dropdownColors.click();
-    }
-
-    @Step("Select Yellow")
-    public void selectYellow() {
-        yellow.click();
+        Select selectDropdown = new Select(dropdownColors);
+        selectDropdown.selectByVisibleText("Yellow");
     }
 
     public void isYellowSelected() {

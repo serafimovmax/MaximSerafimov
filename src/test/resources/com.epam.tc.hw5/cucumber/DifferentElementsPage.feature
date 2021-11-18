@@ -19,4 +19,3 @@ Feature: Different Elements
     Then Log rows are displayed
 
 
-

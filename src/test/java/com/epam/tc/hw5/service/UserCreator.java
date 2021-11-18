@@ -8,7 +8,6 @@ public class UserCreator {
     public static final String USER_PASSWORD = LoginDataProvider.getLoginData("userPassword");
     public static final String USER_NAME = LoginDataProvider.getLoginData("userName");
 
-
     public static User withCredentialsFromProperty() {
         return new User(USER_LOGIN, USER_PASSWORD, USER_NAME);
     }

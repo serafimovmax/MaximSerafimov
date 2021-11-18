@@ -35,6 +35,5 @@ public class BaseSteps extends AbstractBaseStep {
     @Then("\"Roman Iovlev\" is logged")
     public void isUserLogged() {
         assertThat(mainPage.checkUserNameDisplayed());
-        assertThat(mainPage.getUserName()).isEqualTo(testUser.getName());
     }
 }

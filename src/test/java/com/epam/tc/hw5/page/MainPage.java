@@ -44,10 +44,4 @@ public class MainPage extends AbstractPage {
     public boolean checkUserNameDisplayed() {
         return userName.isDisplayed();
     }
-
-    @Step("Get user name")
-    public String getUserName() {
-        return userName.getText();
-    }
-
 }

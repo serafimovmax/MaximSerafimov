@@ -15,22 +15,22 @@ public class UserTablePage extends AbstractPage {
 
     private static final String URL = "https://jdi-testing.github.io/jdi-light/user-table.html";
 
-    @FindBy(xpath = "//a[contains(text(), 'User Table')]")
+    @FindBy(linkText = "USER TABLE")
     private WebElement userTableButton;
 
-    @FindBy(xpath = "//tbody/tr/td[1]")
+    @FindBy(xpath = "//td[1]")
     private List<WebElement> userNumber;
 
-    @FindBy(css = "tr > td > select")
+    @FindBy(css = "td select")
     private List<WebElement> typeDropdowns;
 
-    @FindBy(css = "tr > td > a")
+    @FindBy(xpath = "//td[3]")
     private List<WebElement> userNames;
 
-    @FindBy(css = "tr > td > div > span")
+    @FindBy(xpath = "//td[4]//span")
     private List<WebElement> descriptionTexts;
 
-    @FindBy(css = "tr > td > div > br")
+    @FindBy(xpath = "//td[4]//input[@type = 'checkbox']")
     private List<WebElement> checkboxes;
 
     @FindBy(xpath = "//tbody/tr[1]/td[2]/select/*")
@@ -39,7 +39,7 @@ public class UserTablePage extends AbstractPage {
     @FindBy(id = "ivan")
     private WebElement vipIvanCheckbox;
 
-    @FindBy(css = ".panel-body-list > li")
+    @FindBy(xpath = "//ul[@class='panel-body-list logs']/li")
     private List<WebElement> logs;
 
 
@@ -51,7 +51,7 @@ public class UserTablePage extends AbstractPage {
     @Step("Click on User Table")
     public void clickOnUserTable() {
         userTableButton.click();
-        new WebDriverWait(webDriver, WAIT * 2).until(
+        new WebDriverWait(webDriver, TEN_SECONDS).until(
                 webDriver -> ((JavascriptExecutor) webDriver)
                         .executeScript("return document.readyState").equals("complete"));
     }

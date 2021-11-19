@@ -10,8 +10,6 @@ Feature: Different Elements
     Then "Different elements" page should be opened
     When I select "Water" in checkbox
     And I select "Wind" in checkbox
-    Then "Water" checkbox is selected
-    And "Wind" checkbox is selected
     When I click on "Selen" radio
     Then "Selen" radio is checked
     When I select "Yellow" color in dropdown

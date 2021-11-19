@@ -18,7 +18,7 @@ public class DifferentElementsPage extends AbstractPage {
     @FindBy(linkText = "DIFFERENT ELEMENTS")
     private WebElement differentElements;
 
-    @FindBy(xpath = "//input[@type='checkbox']")
+    @FindBy(css = ".label-checkbox")
     private List<WebElement> checkboxes;
 
     @FindBy(xpath = "//label[contains(.,'Water')]")
@@ -56,22 +56,10 @@ public class DifferentElementsPage extends AbstractPage {
         return webDriver.getCurrentUrl();
     }
 
-    @Step("Select Water Checkbox")
-    public void selectWaterCheckbox() {
-        waterCheckbox.click();
-    }
-
-    public void isWaterCheckboxSelected() {
-        assertThat(waterCheckbox.isSelected());
-    }
-
-    @Step("Select Wind Checkbox")
-    public void selectWindCheckbox() {
-        windCheckbox.click();
-    }
-
-    public void isWindCheckboxSelected() {
-        assertThat(windCheckbox.isSelected());
+    @Step("Select checkboxes")
+    public void getElements(String checkboxName) {
+        checkboxes.stream()
+                  .filter(i -> i.getText().contains(checkboxName)).findFirst().orElseThrow().click();
     }
 
     @Step("Select Selen Radio")

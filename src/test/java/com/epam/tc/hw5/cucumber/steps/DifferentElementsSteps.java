@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import java.util.Arrays;
 
 @Feature("Test for Service")
 @Story("Test for checkboxes and logs")
@@ -29,24 +30,9 @@ public class DifferentElementsSteps extends AbstractBaseStep {
                 .isEqualTo(TextsForComparison.DIFFERENT_ELEMENTS_URL);
     }
 
-    @When("I select \"Water\" in checkbox")
-    public void clickOnWaterCheckboxes() {
-        differentElementsPage.selectWaterCheckbox();
-    }
-
-    @When("I select \"Wind\" in checkbox")
-    public void clickOnWindCheckboxes() {
-        differentElementsPage.selectWindCheckbox();
-    }
-
-    @Then("\"Water\" checkbox is selected")
-    public void checkboxWaterIsChecked() {
-        differentElementsPage.isWaterCheckboxSelected();
-    }
-
-    @And("\"Wind\" checkbox is selected")
-    public void checkboxWindIsChecked() {
-        differentElementsPage.isWindCheckboxSelected();
+    @When("I select {string} in checkbox")
+    public void selectCheckboxes(String string) {
+        differentElementsPage.getElements(string);
     }
 
     @When("I click on \"Selen\" radio")

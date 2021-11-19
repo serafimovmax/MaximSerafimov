@@ -57,7 +57,7 @@ public class DifferentElementsPage extends AbstractPage {
     }
 
     @Step("Select checkboxes")
-    public void getElements(String checkboxName) {
+    public void selectElements(String checkboxName) {
         checkboxes.stream()
                   .filter(i -> i.getText().contains(checkboxName)).findFirst().orElseThrow().click();
     }

@@ -3,12 +3,9 @@ package com.epam.tc.hw5.cucumber.steps;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.epam.tc.hw5.util.TextsForComparison;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import java.util.Arrays;
 
 @Feature("Test for Service")
 @Story("Test for checkboxes and logs")
@@ -32,7 +29,7 @@ public class DifferentElementsSteps extends AbstractBaseStep {
 
     @When("I select {string} in checkbox")
     public void selectCheckboxes(String string) {
-        differentElementsPage.getElements(string);
+        differentElementsPage.selectElements(string);
     }
 
     @When("I click on \"Selen\" radio")

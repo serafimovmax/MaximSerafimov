@@ -1,11 +1,9 @@
 package com.epam.tc.hw6.driver;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class DriverSingleton {
 

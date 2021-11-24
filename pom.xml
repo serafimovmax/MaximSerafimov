@@ -30,9 +30,6 @@
   <profiles>
     <profile>
       <id>hw4AllTest</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
       <properties>
         <suite.xml.name>${project.basedir}/src/test/resources/hw4/AllTestsSuite</suite.xml.name>
       </properties>
@@ -50,13 +47,18 @@
       <properties>
         <test.suite.name>${project.basedir}/src/test/resources/com.epam.tc.hw5/cucumber/CucumberSuite.xml</test.suite.name>
       </properties>
+    </profile>
+
+    <profile>
+      <id>hw06AllTest</id>
+      <properties>
+        <test.suite.name>${project.basedir}/src/test/resources/hw6/AllTestsSuite</test.suite.name>
+      </properties>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
     </profile>
   </profiles>
-
-
 
   <dependencies>
     <dependency>

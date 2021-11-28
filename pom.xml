@@ -20,11 +20,12 @@
     <webdrivermanager.version>5.0.3</webdrivermanager.version>
     <selenium-java.version>3.141.59</selenium-java.version>
     <allure-testng.version>2.16.0</allure-testng.version>
-    <aspectj.version>1.9.7</aspectj.version>
+    <aspectj.version>1.9.5</aspectj.version>
     <cucumber-java.version>7.0.0</cucumber-java.version>
     <cucumber-testng.version>7.0.0</cucumber-testng.version>
 
     <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+    <jdi.version>1.3.14</jdi.version>
   </properties>
 
   <profiles>
@@ -53,6 +54,13 @@
       <id>hw06AllTest</id>
       <properties>
         <test.suite.name>${project.basedir}/src/test/resources/hw6/AllTestsSuite</test.suite.name>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>hw07JdiTest</id>
+      <properties>
+        <test.suite.name>${project.basedir}/src/test/resources/jdi/jdiSuite</test.suite.name>
       </properties>
       <activation>
         <activeByDefault>true</activeByDefault>
@@ -111,6 +119,12 @@
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-testng</artifactId>
       <version>${cucumber-testng.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.epam.jdi</groupId>
+      <artifactId>jdi-light-html</artifactId>
+      <version>${jdi.version}</version>
     </dependency>
   </dependencies>
 

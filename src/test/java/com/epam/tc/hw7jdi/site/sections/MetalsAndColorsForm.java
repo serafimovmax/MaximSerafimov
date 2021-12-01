@@ -48,7 +48,7 @@ public class MetalsAndColorsForm extends Form<MetalsAndColorsData> {
     public Checkbox selectedVegetables;
 
     @Override
-    public void fill(MetalsAndColorsData metalsAndColorsData) {
+    public void submit(MetalsAndColorsData metalsAndColorsData) {
         summaryOdd.select(metalsAndColorsData.getSummary().get(0).toString());
         summaryEven.select(metalsAndColorsData.getSummary().get(1).toString());
         metalsAndColorsData.getElements().forEach(elementsCheckList::select);
@@ -57,5 +57,6 @@ public class MetalsAndColorsForm extends Form<MetalsAndColorsData> {
         vegetables.click();
         vegetablesDropdown.select("Vegetables");
         metalsAndColorsData.getVegetables().forEach(vegetablesDropdown::select);
+        submit.click();
     }
 }

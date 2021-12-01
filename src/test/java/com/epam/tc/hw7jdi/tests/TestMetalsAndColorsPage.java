@@ -15,12 +15,8 @@ public class TestMetalsAndColorsPage extends BaseTest {
     public void testMetalsAndColorsPage(MetalsAndColorsData metalsAndColors) {
 
         headerMenu.select("Metals & Colors");
-        metalsAndColorsForm.fill(metalsAndColors);
-        metalsAndColorsForm.submit();
-
-        MetalsAndColorsData metalsAndColorsData = new MetalsAndColorsData();
-
-        assertThat(metalsAndColorsData.getExpectedResultFromMACdata(metalsAndColors))
+        metalsAndColorsForm.submit(metalsAndColors);
+        assertThat(metalsAndColors.getExpectedResultFromMACdata(metalsAndColors))
             .isEqualTo(metalsAndColorsPage.getResults());
     }
 }

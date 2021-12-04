@@ -1,0 +1,328 @@
+{
+	"info": {
+		"_postman_id": "397e2f3a-1fd5-4e42-b437-9ec663387a32",
+		"name": "EPAM_HW_API_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create_Board",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"board_name\", pm.environment.replaceIn(\"{{$randomFirstName}}\"));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"BoardCreationStatusCodeTest\", () => {",
+							"    pm.response.to.have.status(200)    ",
+							"});",
+							"",
+							"pm.test(\"BoardNameCheck\", () => {",
+							"    pm.expect(pm.environment.get(\"board_name\")).to.eql(pm.response.json().name)",
+							"});",
+							"",
+							"pm.test(\"CheckBoardId\", () => {",
+							"    pm.response.to.have.jsonBody(\"id\")",
+							"});",
+							"",
+							"pm.environment.set(\"board_id\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/1/boards/?name={{board_name}}&key={{key}}&token={{token}}&defaultLists=false",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"1",
+						"boards",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{board_name}}"
+						},
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						},
+						{
+							"key": "defaultLists",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change_Board_Name",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"board_name\", pm.environment.replaceIn(\"{{$randomFirstName}}\"));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"ChangeBoardNameStatusCodeTest\", () => {",
+							"    pm.response.to.have.status(200)    ",
+							"});",
+							"",
+							"pm.test(\"CheckBoardNameChange\", () => {",
+							"    pm.expect(pm.environment.get(\"board_name\")).to.eql(pm.response.json().name)",
+							"});",
+							"",
+							"pm.test(\"CheckBoardIdAfterChangeName\", () => {",
+							"    pm.response.to.have.jsonBody(\"id\")",
+							"    pm.expect(pm.environment.get(\"board_id\")).to.eql(pm.response.json().id)",
+							"});",
+							"",
+							"pm.environment.set(\"board_name\", pm.response.json().name);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/1/boards/:ID/?name={{board_name}}&key={{key}}&token={{token}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"1",
+						"boards",
+						":ID",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{board_name}}"
+						},
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					],
+					"variable": [
+						{
+							"key": "ID",
+							"value": "{{board_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Board_Name_Check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"BoardNameAfterChangeStatusCodeTest\", () => {",
+							"    pm.response.to.have.status(200)    ",
+							"});",
+							"",
+							"pm.test(\"BoardAfterChangeNameCheck\", () => {",
+							"    pm.expect(pm.environment.get(\"board_name\")).to.eql(pm.response.json().name)",
+							"});",
+							"",
+							"pm.test(\"BoardIdAfterChangeNameCheck\", () => {",
+							"    pm.response.to.have.jsonBody(\"id\")",
+							"    pm.expect(pm.environment.get(\"board_id\")).to.eql(pm.response.json().id)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/1/boards/:ID/?key={{key}}&token={{token}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"1",
+						"boards",
+						":ID",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					],
+					"variable": [
+						{
+							"key": "ID",
+							"value": "{{board_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete_Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"BoardAfterChangeNameStatusCodeTest\", () => {",
+							"    pm.response.to.have.status(200)    ",
+							"});",
+							"",
+							"pm.test(\"BoardDeleteResponseCheck\", () => {",
+							"    pm.response.to.have.jsonBody(\"_value\")",
+							"});",
+							"",
+							"pm.test(\"BoardDeleteResponseCheckNull\", () => {",
+							"    pm.expect(pm.response.json()._value).to.eql(null)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/1/boards/:ID/?key={{key}}&token={{token}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"1",
+						"boards",
+						":ID",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					],
+					"variable": [
+						{
+							"key": "ID",
+							"value": "{{board_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete_Board _Check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"BoardAfterChangeNameStatusCodeTest\", () => {",
+							"    pm.response.to.have.status(404)    ",
+							"});",
+							"",
+							"pm.test(\"ResponseCheck\", () => {",
+							"    pm.response.to.be.notFound",
+							"});",
+							"",
+							"pm.test(\"MessageCheck\", () => {",
+							"    pm.expect(pm.response.text())",
+							"    .contain(\"The requested resource was not found.\")",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/1/boards/:ID/?key={{key}}&token={{token}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"1",
+						"boards",
+						":ID",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					],
+					"variable": [
+						{
+							"key": "ID",
+							"value": "{{board_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Tests hw9api">
+  <test name="Trello api tests">
+    <classes>
+      <class name="com.epam.tc.hw9api.BoardTest"></class>
+      <class name="com.epam.tc.hw9api.ListsTest"></class>
+    </classes>
+  </test>
+</suite>

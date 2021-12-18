@@ -8,12 +8,9 @@ import static com.epam.tc.hw9api.specifications.BoardService.parseBoard;
 import static com.epam.tc.hw9api.utils.PropertiesReader.getProperty;
 import static com.epam.tc.hw9api.utils.RandomString.generateRandomName;
 import static io.restassured.http.Method.DELETE;
-import static io.restassured.http.Method.GET;
 import static io.restassured.http.Method.POST;
-import static io.restassured.http.Method.PUT;
 
 import com.epam.tc.hw9api.beans.Board;
-import com.epam.tc.hw9api.specifications.BoardService.BoardRequestBuilder;
 import io.qameta.allure.Step;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
@@ -33,18 +30,6 @@ public class BoardSteps {
         return parseBoard(response);
     }
 
-    @Step("Get Board")
-    public static Board getBoard(String boardId) {
-        Response response = boardRequestBuilder()
-            .setMethod(GET)
-            .setId(boardId)
-            .buildRequest()
-            .sendRequest(BOARDS_ENDPOINT)
-            .then().extract().response();
-        return parseBoard(response);
-
-    }
-
     @Step
     public static Response getDeletedBoard(String boardId) {
         return boardRequestBuilder()
@@ -53,17 +38,6 @@ public class BoardSteps {
             .sendRequest(BOARDS_ENDPOINT + boardId)
             .then()
             .extract().response();
-    }
-
-    @Step("Update Board")
-    public static Board changeBoardName(String id, String name) {
-        return parseBoard(
-            boardRequestBuilder()
-                .setMethod(PUT)
-                .setName(name)
-                .buildRequest()
-                .sendRequest(BOARDS_ENDPOINT + id)
-        );
     }
 
     @Step("Delete Board")

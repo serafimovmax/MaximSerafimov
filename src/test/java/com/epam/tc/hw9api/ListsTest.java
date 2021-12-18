@@ -9,14 +9,17 @@ import static com.epam.tc.hw9api.utils.RandomString.generateRandomName;
 import static io.restassured.http.Method.PUT;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.notNullValue;
 
+import com.epam.tc.hw9api.beans.Board;
+import com.epam.tc.hw9api.beans.Lists;
 import org.testng.annotations.Test;
 
 public class ListsTest extends BaseTest {
+    Board board;
+    Lists lists;
 
     @Test
-    public void createNewListTest() {
+    public void createListTest() {
         String randomName = generateRandomName();
         board = createBoard();
         lists = parseList(createList(board.getId(), randomName));
@@ -24,15 +27,7 @@ public class ListsTest extends BaseTest {
     }
 
     @Test
-    public void checkIfPosIsExist() {
-        String randomName = generateRandomName();
-        board = createBoard();
-        lists = parseList(createList(board.getId(), randomName));
-        assertThat(lists.getPos(), notNullValue());
-    }
-
-    @Test
-    public void changeNameList() {
+    public void changeListName() {
         String randomName = generateRandomName();
         board = createBoard();
         lists = parseList(createList(board.getId(), randomName));

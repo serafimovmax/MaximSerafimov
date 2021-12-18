@@ -16,6 +16,8 @@ import java.util.Map;
 import org.apache.http.HttpStatus;
 
 public class BaseService {
+    public static final String ID = "id";
+    public static final String NAME = "name";
     public static final URI BOARD_URI = URI.create(getProperty("baseUri"));
     protected Method requestMethod;
     protected Map<String, String> parameters;
@@ -35,7 +37,7 @@ public class BaseService {
 
     public Response sendRequest(String path) {
         return RestAssured
-            .given(requestSpecification()).log().all()
+            .given(requestSpecification()).log().ifValidationFails()
             .queryParams(parameters)
             .queryParam("key", getProperty("key"))
             .queryParam("token", getProperty("token"))
@@ -43,7 +45,7 @@ public class BaseService {
             .prettyPeek();
     }
 
-    public static ResponseSpecification responseSpecification() {
+    public static ResponseSpecification goodResponseSpecification() {
         return new ResponseSpecBuilder()
             .expectContentType(ContentType.JSON)
             .expectResponseTime(lessThan(10000L))
@@ -51,7 +53,7 @@ public class BaseService {
             .build();
     }
 
-    public static ResponseSpecification badResponseSpec() {
+    public static ResponseSpecification notFoundResponseSpecification() {
         return new ResponseSpecBuilder()
             .expectContentType(ContentType.TEXT)
             .expectStatusCode(HttpStatus.SC_NOT_FOUND)

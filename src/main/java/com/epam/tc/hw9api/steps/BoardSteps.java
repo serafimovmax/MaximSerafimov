@@ -2,7 +2,7 @@ package com.epam.tc.hw9api.steps;
 
 import static com.epam.tc.hw9api.constants.Constants.BOARDS_ENDPOINT;
 import static com.epam.tc.hw9api.constants.Constants.MEMBER_ENDPOINT;
-import static com.epam.tc.hw9api.specifications.BaseService.responseSpecification;
+import static com.epam.tc.hw9api.specifications.BaseService.goodResponseSpecification;
 import static com.epam.tc.hw9api.specifications.BoardService.boardRequestBuilder;
 import static com.epam.tc.hw9api.specifications.BoardService.parseBoard;
 import static com.epam.tc.hw9api.utils.PropertiesReader.getProperty;
@@ -13,6 +13,7 @@ import static io.restassured.http.Method.POST;
 import static io.restassured.http.Method.PUT;
 
 import com.epam.tc.hw9api.beans.Board;
+import com.epam.tc.hw9api.specifications.BoardService.BoardRequestBuilder;
 import io.qameta.allure.Step;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
@@ -33,11 +34,23 @@ public class BoardSteps {
     }
 
     @Step("Get Board")
-    public static Response getBoard(String id) {
-        return boardRequestBuilder()
+    public static Board getBoard(String boardId) {
+        Response response = boardRequestBuilder()
             .setMethod(GET)
+            .setId(boardId)
             .buildRequest()
-            .sendRequest(BOARDS_ENDPOINT + id)
+            .sendRequest(BOARDS_ENDPOINT)
+            .then().extract().response();
+        return parseBoard(response);
+
+    }
+
+    @Step
+    public static Response getDeletedBoard(String boardId) {
+        return boardRequestBuilder()
+            .setMethod(Method.GET)
+            .buildRequest()
+            .sendRequest(BOARDS_ENDPOINT + boardId)
             .then()
             .extract().response();
     }
@@ -54,12 +67,14 @@ public class BoardSteps {
     }
 
     @Step("Delete Board")
-    public static Response deleteBoard(String id) {
+    public static void deleteBoard(String boardId) {
         boardRequestBuilder()
             .setMethod(DELETE)
+            .setId(boardId)
             .buildRequest()
-            .sendRequest(BOARDS_ENDPOINT + id);
-        return null;
+            .sendRequest(BOARDS_ENDPOINT + boardId)
+            .then()
+            .spec(goodResponseSpecification());
     }
 
     @Step("Delete All Boards")
@@ -77,15 +92,7 @@ public class BoardSteps {
             .buildRequest()
             .sendRequest(MEMBER_ENDPOINT + getProperty("userId") + BOARDS_ENDPOINT)
             .then().assertThat()
-            .spec(responseSpecification())
+            .spec(goodResponseSpecification())
             .extract().response().jsonPath().getList("id");
-    }
-
-    @Step("Get response")
-    public static Response getResponse(String id) {
-        return  boardRequestBuilder()
-            .setMethod(GET)
-            .buildRequest()
-            .sendRequest(BOARDS_ENDPOINT + id);
     }
 }

@@ -1,8 +1,5 @@
 package com.epam.tc.hw9api.specifications;
 
-import static com.epam.tc.hw9api.constants.Constants.ID;
-import static com.epam.tc.hw9api.constants.Constants.NAME;
-
 import com.epam.tc.hw9api.beans.Board;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

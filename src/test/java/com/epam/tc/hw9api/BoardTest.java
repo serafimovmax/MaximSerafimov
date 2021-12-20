@@ -1,11 +1,12 @@
 package com.epam.tc.hw9api;
 
-import static com.epam.tc.hw9api.constants.Constants.BOARDS_ENDPOINT;
 import static com.epam.tc.hw9api.specifications.BaseService.notFoundResponseSpecification;
 import static com.epam.tc.hw9api.specifications.BoardService.boardRequestBuilder;
 import static com.epam.tc.hw9api.specifications.BoardService.parseBoard;
+import static com.epam.tc.hw9api.steps.BoardSteps.BOARDS_ENDPOINT;
 import static com.epam.tc.hw9api.steps.BoardSteps.createBoard;
 import static com.epam.tc.hw9api.steps.BoardSteps.deleteBoard;
+import static com.epam.tc.hw9api.steps.BoardSteps.getBoard;
 import static com.epam.tc.hw9api.steps.BoardSteps.getDeletedBoard;
 import static com.epam.tc.hw9api.utils.RandomString.generateRandomName;
 import static io.restassured.http.Method.PUT;
@@ -21,8 +22,8 @@ public class BoardTest extends BaseTest {
     @Test
     public void createBoardTest() {
         board = createBoard();
-        String createdBoard = board.getName();
-        assertThat(board.getName(), equalTo(createdBoard));
+        Board newBoard = getBoard(board);
+        assertThat(board.getName(), equalTo(newBoard.getName()));
     }
 
     @Test

@@ -1,14 +1,17 @@
 package com.epam.tc.hw9api;
 
-import static com.epam.tc.hw9api.constants.Constants.LISTS_ENDPOINT;
 import static com.epam.tc.hw9api.specifications.ListService.listRequestBuilder;
 import static com.epam.tc.hw9api.specifications.ListService.parseList;
 import static com.epam.tc.hw9api.steps.BoardSteps.createBoard;
+import static com.epam.tc.hw9api.steps.ListSteps.LISTS_ENDPOINT;
 import static com.epam.tc.hw9api.steps.ListSteps.createList;
+import static com.epam.tc.hw9api.steps.ListSteps.getList;
 import static com.epam.tc.hw9api.utils.RandomString.generateRandomName;
 import static io.restassured.http.Method.PUT;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasProperty;
 
 import com.epam.tc.hw9api.beans.Board;
 import com.epam.tc.hw9api.beans.Lists;
@@ -22,7 +25,8 @@ public class ListsTest extends BaseTest {
     public void createListTest() {
         String randomName = generateRandomName();
         board = createBoard();
-        lists = parseList(createList(board.getId(), randomName));
+        lists = createList(board.getId(), randomName);
+        assertThat(lists, allOf(hasProperty("id"), hasProperty("name")));
         assertThat(lists.getName(), equalTo(randomName));
     }
 
@@ -30,7 +34,7 @@ public class ListsTest extends BaseTest {
     public void changeListName() {
         String randomName = generateRandomName();
         board = createBoard();
-        lists = parseList(createList(board.getId(), randomName));
+        lists = createList(board.getId(), randomName);
         lists = parseList(listRequestBuilder()
             .setMethod(PUT)
             .setName(randomName)

@@ -20,12 +20,15 @@
     <webdrivermanager.version>5.0.3</webdrivermanager.version>
     <selenium-java.version>3.141.59</selenium-java.version>
     <allure-testng.version>2.16.0</allure-testng.version>
-    <aspectj.version>1.9.5</aspectj.version>
+    <aspectj.version>1.9.7</aspectj.version>
     <cucumber-java.version>7.0.0</cucumber-java.version>
     <cucumber-testng.version>7.0.0</cucumber-testng.version>
 
     <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
-    <jdi.version>1.3.14</jdi.version>
+
+    <allure-commandline.version>2.15.0</allure-commandline.version>
+    <rest-assured.version>4.4.0</rest-assured.version>
+    <gson.version>2.8.9</gson.version>
   </properties>
 
   <profiles>
@@ -55,12 +58,15 @@
       <properties>
         <test.suite.name>${project.basedir}/src/test/resources/hw6/AllTestsSuite</test.suite.name>
       </properties>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
     </profile>
 
     <profile>
-      <id>hw07JdiTest</id>
+      <id>hw9api</id>
       <properties>
-        <test.suite.name>${project.basedir}/src/test/resources/jdi/jdiSuite</test.suite.name>
+        <test.suite.name>${project.basedir}/src/test/resources/hw9api/TrelloTestSuite</test.suite.name>
       </properties>
       <activation>
         <activeByDefault>true</activeByDefault>
@@ -122,10 +128,31 @@
     </dependency>
 
     <dependency>
-      <groupId>com.epam.jdi</groupId>
-      <artifactId>jdi-light-html</artifactId>
-      <version>${jdi.version}</version>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <version>${rest-assured.version}</version>
+      <scope>compile</scope>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>${gson.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.javafaker</groupId>
+      <artifactId>javafaker</artifactId>
+      <version>0.15</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>7.4.0</version>
+      <scope>compile</scope>
+    </dependency>
+
   </dependencies>
 
   <build>
